@@ -301,5 +301,13 @@ func (c Command) startApp(ctx *Context) error {
 
 // VisibleFlags returns a slice of the Flags with Hidden=false
 func (c Command) VisibleFlags() []Flag {
-	return visibleFlags(c.Flags)
+	flags := c.Flags
+	if !c.HideHelp && (HelpFlag != BoolFlag{}) {
+		// append help to flags
+		flags = append(
+			flags,
+			HelpFlag,
+		)
+	}
+	return visibleFlags(flags)
 }
