@@ -1266,7 +1266,7 @@ func TestApp_Run_Version(t *testing.T) {
 func TestApp_Run_Categories(t *testing.T) {
 	app := NewApp()
 	app.Name = "categories"
-	app.HideHelp = true
+	app.HideHelpCommand = true
 	app.Commands = []Command{
 		{
 			Name:     "command1",
@@ -1316,7 +1316,7 @@ func TestApp_Run_Categories(t *testing.T) {
 func TestApp_VisibleCategories(t *testing.T) {
 	app := NewApp()
 	app.Name = "visible-categories"
-	app.HideHelp = true
+	app.HideHelpCommand = true
 	app.Commands = []Command{
 		{
 			Name:     "command1",
@@ -1356,7 +1356,7 @@ func TestApp_VisibleCategories(t *testing.T) {
 
 	app = NewApp()
 	app.Name = "visible-categories"
-	app.HideHelp = true
+	app.HideHelpCommand = true
 	app.Commands = []Command{
 		{
 			Name:     "command1",
@@ -1391,7 +1391,7 @@ func TestApp_VisibleCategories(t *testing.T) {
 
 	app = NewApp()
 	app.Name = "visible-categories"
-	app.HideHelp = true
+	app.HideHelpCommand = true
 	app.Commands = []Command{
 		{
 			Name:     "command1",
