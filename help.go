@@ -177,6 +177,19 @@ func ShowCommandHelp(ctx *Context, command string) error {
 	}
 
 	for _, c := range ctx.App.Commands {
+		// If not set, set these values before printing help.
+		if c.Prompt == "" {
+			c.Prompt = defaultPrompt
+		}
+
+		if c.EnvVarSetCommand == "" {
+			c.EnvVarSetCommand = defaultEnvSetCmd
+		}
+
+		if c.AssignmentOperator == "" {
+			c.AssignmentOperator = defaultAssignmentOperator
+		}
+
 		if c.HasName(command) {
 			if c.CustomHelpTemplate != "" {
 				HelpPrinterCustom(ctx.App.Writer, c.CustomHelpTemplate, c, nil)
