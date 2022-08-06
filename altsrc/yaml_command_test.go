@@ -1,6 +1,7 @@
 // Disabling building of yaml support in cases where golang is 1.0 or 1.1
 // as the encoding library is not implemented or supported.
 
+//go:build go1.2
 // +build go1.2
 
 package altsrc
@@ -36,7 +37,8 @@ func TestCommandYamlFileTest(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 	err := command.Run(c)
@@ -69,7 +71,8 @@ func TestCommandYamlFileTestGlobalEnvVarWins(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test", EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 
@@ -104,7 +107,8 @@ func TestCommandYamlFileTestGlobalEnvVarWinsNested(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test", EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 
@@ -136,7 +140,8 @@ func TestCommandYamlFileTestSpecifiedFlagWins(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 
@@ -169,7 +174,8 @@ func TestCommandYamlFileTestSpecifiedFlagWinsNested(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 
@@ -201,7 +207,8 @@ func TestCommandYamlFileTestDefaultValueFileWins(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test", Value: 7}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 
@@ -234,7 +241,8 @@ func TestCommandYamlFileTestDefaultValueFileWinsNested(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test", Value: 7}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 
@@ -269,7 +277,8 @@ func TestCommandYamlFileFlagHasDefaultGlobalEnvYamlSetGlobalEnvWins(t *testing.T
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test", Value: 7, EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 	err := command.Run(c)
@@ -304,7 +313,8 @@ func TestCommandYamlFileFlagHasDefaultGlobalEnvYamlSetGlobalEnvWinsNested(t *tes
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test", Value: 7, EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewYamlSourceFromFlagFunc("load"))
 	err := command.Run(c)

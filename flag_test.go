@@ -31,7 +31,7 @@ func TestBoolFlagHelpOutput(t *testing.T) {
 }
 
 func TestFlagsFromEnv(t *testing.T) {
-	var flagTests = []struct {
+	flagTests := []struct {
 		input     string
 		output    interface{}
 		flag      Flag
@@ -1029,7 +1029,7 @@ func TestParseMultiBoolFromEnvCascade(t *testing.T) {
 }
 
 func TestParseBoolTFromEnv(t *testing.T) {
-	var boolTFlagTests = []struct {
+	boolTFlagTests := []struct {
 		input  string
 		output bool
 	}{

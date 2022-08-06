@@ -1,6 +1,7 @@
 // Disabling building of toml support in cases where golang is 1.0 or 1.1
 // as the encoding library is not implemented or supported.
 
+//go:build go1.2
 // +build go1.2
 
 package altsrc
@@ -36,7 +37,8 @@ func TestCommandTomFileTest(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 	err := command.Run(c)
@@ -69,7 +71,8 @@ func TestCommandTomlFileTestGlobalEnvVarWins(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test", EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 
@@ -103,7 +106,8 @@ func TestCommandTomlFileTestGlobalEnvVarWinsNested(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test", EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 
@@ -135,7 +139,8 @@ func TestCommandTomlFileTestSpecifiedFlagWins(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 
@@ -168,7 +173,8 @@ func TestCommandTomlFileTestSpecifiedFlagWinsNested(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 
@@ -200,7 +206,8 @@ func TestCommandTomlFileTestDefaultValueFileWins(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test", Value: 7}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 
@@ -232,7 +239,8 @@ func TestCommandTomlFileTestDefaultValueFileWinsNested(t *testing.T) {
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test", Value: 7}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 
@@ -267,7 +275,8 @@ func TestCommandTomlFileFlagHasDefaultGlobalEnvTomlSetGlobalEnvWins(t *testing.T
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "test", Value: 7, EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 	err := command.Run(c)
@@ -301,7 +310,8 @@ func TestCommandTomlFileFlagHasDefaultGlobalEnvTomlSetGlobalEnvWinsNested(t *tes
 		},
 		Flags: []cli.Flag{
 			NewIntFlag(cli.IntFlag{Name: "top.test", Value: 7, EnvVar: "THE_TEST"}),
-			cli.StringFlag{Name: "load"}},
+			cli.StringFlag{Name: "load"},
+		},
 	}
 	command.Before = InitInputSourceWithContext(command.Flags, NewTomlSourceFromFlagFunc("load"))
 	err := command.Run(c)

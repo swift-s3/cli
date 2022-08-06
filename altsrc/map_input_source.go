@@ -142,7 +142,7 @@ func (fsm *MapInputSource) StringSlice(name string) ([]string, error) {
 		return nil, incorrectTypeForFlagError(name, "[]interface{}", otherGenericValue)
 	}
 
-	var stringSlice = make([]string, 0, len(otherValue))
+	stringSlice := make([]string, 0, len(otherValue))
 	for i, v := range otherValue {
 		stringValue, isType := v.(string)
 
@@ -171,7 +171,7 @@ func (fsm *MapInputSource) IntSlice(name string) ([]int, error) {
 		return nil, incorrectTypeForFlagError(name, "[]interface{}", otherGenericValue)
 	}
 
-	var intSlice = make([]int, 0, len(otherValue))
+	intSlice := make([]int, 0, len(otherValue))
 	for i, v := range otherValue {
 		intValue, isType := v.(int)
 

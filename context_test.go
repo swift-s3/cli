@@ -329,7 +329,6 @@ func TestContext_GlobalFlag(t *testing.T) {
 	app.Run([]string{"command", "-g", "foo"})
 	expect(t, globalFlag, "foo")
 	expect(t, globalFlagSet, true)
-
 }
 
 func TestContext_GlobalFlagsInSubcommands(t *testing.T) {

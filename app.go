@@ -172,7 +172,6 @@ func (a *App) Setup() {
 	if a.Writer == nil {
 		a.Writer = os.Stdout
 	}
-
 }
 
 // Run is the entry point to the cli app. Parses the arguments slice and routes
@@ -457,7 +456,6 @@ func (a *App) hasFlag(flag Flag) bool {
 }
 
 func (a *App) errWriter() io.Writer {
-
 	// When the app ErrWriter is nil use the package level one.
 	if a.ErrWriter == nil {
 		return ErrWriter
