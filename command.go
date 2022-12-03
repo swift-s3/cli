@@ -57,6 +57,8 @@ type Command struct {
 	HideHelpCommand bool
 	// Boolean to hide this command from help or completion
 	Hidden bool
+	// Boolean to hide aliases for this command from help or completion
+	HiddenAliases bool
 
 	// Full name of command for help, defaults to full command name, including parent commands.
 	HelpName        string
@@ -253,7 +255,11 @@ func (c Command) Names() []string {
 		names = append(names, c.ShortName)
 	}
 
-	return append(names, c.Aliases...)
+	if !c.HiddenAliases {
+		names = append(names, c.Aliases...)
+	}
+
+	return names
 }
 
 // HasName returns true if Command.Name or Command.ShortName matches given name
