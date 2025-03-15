@@ -1,4 +1,4 @@
-module github.com/minio/cli
+module github.com/swift-s3/cli
 
 go 1.12
 
